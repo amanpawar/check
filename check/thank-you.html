@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Thank you! 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(160deg, #ffeef8 0%, #ffd6e8 40%, #ffb3d9 100%);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .thank-title {
+      font-size: clamp(1.8rem, 8vw, 3rem);
+      color: #8b4513;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .thank-sub {
+      font-size: clamp(1rem, 4vw, 1.3rem);
+      color: #a0522d;
+      margin-bottom: 1.5rem;
+    }
+    .teddies {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1rem 0 2rem;
+      max-width: 100%;
+    }
+    .teddies iframe {
+      width: clamp(80px, 22vw, 120px);
+      height: clamp(80px, 22vw, 120px);
+      border: none;
+      border-radius: 12px;
+    }
+    .gift-label {
+      font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+      color: #8b4513;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    .gift-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(100px, 35vw, 140px);
+      height: clamp(100px, 35vw, 140px);
+      background: linear-gradient(145deg, #ff9ebb, #ff6b9d);
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 4rem;
+      box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .gift-btn:hover, .gift-btn:active {
+      transform: scale(1.08);
+      box-shadow: 0 12px 35px rgba(255, 107, 157, 0.5);
+    }
+    .gift-btn span {
+      font-size: clamp(2.5rem, 15vw, 4rem);
+    }
+  </style>
+</head>
+<body>
+  <h1 class="thank-title">Thank you! 🥹💕</h1>
+  <p class="thank-sub">You just made my day so much brighter!</p>
+  <div class="teddies">
+    <iframe src="https://tenor.com/embed/9699713996467632190" title="Pengu wow"></iframe>
+    <iframe src="https://tenor.com/embed/818706153784181864" title="Dance meme cute"></iframe>
+    <iframe src="https://tenor.com/embed/15284744427997379718" title="Sad penguin please"></iframe>
+  </div>
+  <p class="gift-label">I have a little something for you 💝</p>
+  <a href="gift.html" class="gift-btn" aria-label="Open your gift"><span>🎁</span></a>
+</body>
+</html>

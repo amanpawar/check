@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>For you 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(180deg, #1a0a0f 0%, #2d1b2e 30%, #1a0a0f 100%);
+      color: #ffd6e8;
+      padding: 1rem;
+      padding-bottom: 1rem;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      padding-bottom: 4rem;
+    }
+    h1 {
+      text-align: center;
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      color: #ffb3d9;
+      margin-bottom: 1rem;
+    }
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .photos img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 3px solid rgba(255, 182, 193, 0.4);
+    }
+    .heartfelt {
+      background: rgba(255, 182, 193, 0.12);
+      border-radius: 20px;
+      padding: 1.25rem;
+      border: 1px solid rgba(255, 182, 193, 0.25);
+      font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+      line-height: 1.65;
+      text-align: center;
+    }
+    .heartfelt p {
+      margin-bottom: 0.75rem;
+    }
+    .heartfelt p:last-child {
+      margin-bottom: 0;
+    }
+    .audio-wrap {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(26, 10, 15, 0.95);
+      padding: 0.6rem 1rem;
+      padding-bottom: max(0.6rem, env(safe-area-inset-bottom));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+    .audio-wrap label {
+      font-size: 0.85rem;
+      color: #ffb3d9;
+    }
+    audio {
+      max-width: 60%;
+      height: 36px;
+    }
+    audio::-webkit-media-controls-panel {
+      background: #ffd6e8;
+    }
+    .play-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 10, 15, 0.85);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .play-overlay.hidden {
+      display: none;
+    }
+    .play-overlay p {
+      color: #ffb3d9;
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      margin: 0.5rem 1rem;
+      text-align: center;
+    }
+    .play-overlay .icon {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="play-overlay" id="playOverlay">
+    <span class="icon">🎵</span>
+    <p>Tap anywhere to play the song 💕</p>
+  </div>
+  <div class="page">
+    <h1>Just for you 💖</h1>
+    <div class="photos">
+      <img src="WhatsApp%20Image%202026-02-14%20at%202.50.41%20PM.jpeg" alt="Us">
+      <img src="WhatsApp%20Image%202026-02-14%20at%202.50.41%20PM%20(1).jpeg" alt="Us">
+      <img src="WhatsApp%20Image%202026-02-14%20at%202.50.42%20PM.jpeg" alt="Us">
+      <img src="WhatsApp%20Image%202026-02-14%20at%202.50.42%20PM%20(1).jpeg" alt="Us">
+    </div>
+    <div class="heartfelt">
+      <p>Every moment with you feels like a little piece of forever. 💕</p>
+      <p>Thank you for being you—for your smile, your kindness, and for every moment we spend together.🥹</p>
+      <p>Thank you for making things feel complete again. Thank you for making me fear losing someone again.🥺</p>
+      <p>I'm so lucky to have you. Here's to many more adventures together. 🌸</p>
+      <p>Thank you for existing in my life. ❤️</p>
+    </div>
+  </div>
+  <div class="audio-wrap">
+    <label for="bgSong">🎵</label>
+    <audio id="bgSong" controls loop autoplay>
+      <source src="Dekha%20Hi%20Nahi.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <script>
+    var bgSong = document.getElementById('bgSong');
+    var overlay = document.getElementById('playOverlay');
+    function startMusic() {
+      overlay.classList.add('hidden');
+      bgSong.currentTime = 2;
+      var p = bgSong.play();
+      if (p && p.catch) p.catch(function() {});
+    }
+    overlay.addEventListener('click', startMusic);
+    overlay.addEventListener('touchstart', startMusic, { passive: true });
+    bgSong.addEventListener('loadedmetadata', function() {
+      if (overlay.classList.contains('hidden')) bgSong.currentTime = 2;
+    });
+    bgSong.addEventListener('canplay', function() {
+      if (overlay.classList.contains('hidden') && bgSong.currentTime < 2) bgSong.currentTime = 2;
+    });
+  </script>
+</body>
+</html>

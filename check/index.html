@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Will you be my Valentine Forever Prabhu (Ms. SS)? 🥺💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+      padding: 1rem;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .container {
+      text-align: center;
+      max-width: 90vw;
+    }
+    h1 {
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+      color: #8b4513;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      line-height: 1.3;
+    }
+    .sub {
+      font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+      color: #a0522d;
+      margin-bottom: 2rem;
+    }
+    .buttons-wrap {
+      position: relative;
+      min-height: 100px;
+      min-width: min(320px, 94vw);
+      width: min(320px, 94vw);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      transform: translateX(-43px);
+    }
+    .btn {
+      padding: 0.9rem 1.8rem;
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      font-weight: 700;
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      z-index: 2;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .btn-yes {
+      background: linear-gradient(145deg, #ff6b9d, #c44569);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(196, 69, 105, 0.4);
+    }
+    .btn-yes:hover, .btn-yes:active {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(196, 69, 105, 0.5);
+    }
+    .btn-no {
+      background: linear-gradient(145deg, #a8a8a8, #6c757d);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      position: absolute;
+      z-index: 1;
+      left: calc(50% + 115px);
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .btn-no.hiding {
+      z-index: 0 !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+    }
+    .no-gif {
+      margin-top: 0.75rem;
+      display: none;
+      justify-content: center;
+    }
+    .no-gif.visible {
+      display: flex;
+    }
+    .no-gif iframe {
+      width: clamp(120px, 28vw, 160px);
+      height: clamp(120px, 28vw, 160px);
+      border: none;
+      border-radius: 12px;
+    }
+    .try-text {
+      min-height: 2rem;
+      margin-top: 1rem;
+      font-size: clamp(0.85rem, 3vw, 1rem);
+      color: #c44569;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .try-text.visible {
+      opacity: 1;
+      animation: wiggle 0.5s ease;
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(-3deg); }
+      75% { transform: rotate(3deg); }
+    }
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      font-size: 1.5rem;
+      opacity: 0.3;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(100vh) rotate(0); opacity: 0; }
+      10% { opacity: 0.3; }
+      90% { opacity: 0.2; }
+      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts"></div>
+  <div class="container">
+    <h1>Will you be my <s>Valentine</s> Forever Prabhu (Ms. SS)? 🥺💕</h1>
+    <p class="sub">I really hope you say yes!</p>
+    <div class="buttons-wrap" id="wrap">
+      <button class="btn btn-yes" id="yesBtn">Yes! 💖</button>
+      <button class="btn btn-no" id="noBtn">No</button>
+    </div>
+    <div class="no-gif" id="noGif">
+      <iframe src="https://tenor.com/embed/10174070686436479501" title="Dance penguin"></iframe>
+    </div>
+    <p class="try-text" id="tryText"></p>
+  </div>
+
+  <script>
+    const messages = [
+      "Try again! Pretty please? 🥺💕",
+      "Don't be shy... click Yes! 💗🌸",
+      "You know you want to! ✨💝",
+      "One more try? Say yes! 🐻‍❄️💖",
+      "I'll keep asking! Try Yes 🥹💕",
+      "You're so close! Yes! 🌷💗",
+      "Pleeease? 🥺💝",
+      "Yes is the way! 💕✨"
+    ];
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const tryText = document.getElementById('tryText');
+    const wrap = document.getElementById('wrap');
+    let runCount = 0;
+    const hideAfter = 6;
+    let lastMoveTime = 0;
+    const moveDebounceMs = 500;
+
+    function randomPosition() {
+      const wrapRect = wrap.getBoundingClientRect();
+      const padding = 16;
+      const btnW = 80;
+      const maxX = Math.max(0, wrapRect.width - btnW - padding * 2);
+      const maxY = Math.max(0, 80 - padding * 2);
+      const x = padding + (maxX > 0 ? Math.random() * maxX : 0);
+      const y = padding + (maxY > 0 ? Math.random() * maxY : 0);
+      return { x, y };
+    }
+
+    function moveNo() {
+      const now = Date.now();
+      if (now - lastMoveTime < moveDebounceMs) return;
+      lastMoveTime = now;
+      runCount++;
+      const msg = messages[runCount % messages.length];
+      tryText.textContent = msg;
+      tryText.classList.add('visible');
+      document.getElementById('noGif').classList.add('visible');
+      if (runCount >= hideAfter) {
+        noBtn.classList.add('hiding');
+        noBtn.style.left = '50%';
+        noBtn.style.top = '50%';
+        noBtn.style.transform = 'translate(-50%, -50%)';
+        return;
+      }
+      const { x, y } = randomPosition();
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+      noBtn.style.transform = 'translate(-50%, -50%)';
+    }
+
+    noBtn.addEventListener('mouseenter', moveNo);
+    noBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      moveNo();
+    }, { passive: false });
+    noBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      moveNo();
+    });
+
+    yesBtn.addEventListener('click', () => {
+      window.location.href = 'thank-you.html';
+    });
+
+    // Floating hearts
+    const heartsContainer = document.getElementById('hearts');
+    const emojis = ['💕', '💖', '💗', '🌸', '💝'];
+    function createHeart() {
+      const h = document.createElement('span');
+      h.className = 'heart';
+      h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      h.style.left = Math.random() * 100 + '%';
+      h.style.animationDelay = Math.random() * 4 + 's';
+      heartsContainer.appendChild(h);
+      setTimeout(() => h.remove(), 5000);
+    }
+    setInterval(createHeart, 800);
+  </script>
+</body>
+</html>
